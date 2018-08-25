@@ -1,2 +1,5 @@
 # test
-to develop v2c tools
+language list:
+perl;
+C++;
+verilog;
