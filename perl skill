@@ -1,3 +1,4 @@
+skill 1:
 Perl文件以后有两种方式对其进行解析：
 #open file
 open FH, "<$file_name";
