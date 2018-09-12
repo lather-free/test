@@ -1,0 +1,34 @@
+Perl文件以后有两种方式对其进行解析：
+#open file
+open FH, "<$file_name";
+方式1:
+while(<FH>){
+  #do something
+}
+方式2：
+my @line_array=<FH>;
+foreach my $line (@line_array) {
+  #do something
+}
+推荐使用方式2，因为，在使用方式1过程中，发现若打开文件过多，会导致文件位置指针丢失，从而指针直接跳到文件末尾。
+例如下面这段代码，完成从test_file中扫描带有file+num的字段，并打开这个文件打印其内容：
+
+test("test_file");
+sub test
+{
+  my $r_file=$_[0];
+  open FH,"<$r_file";
+  while(<FH>)
+  {
+    if(/(file\d+)/) {
+      test($1);
+    }
+    else
+    {
+      print "$_\n";
+    }
+  }
+  close FH;
+}
+
+在执行递归过程中，可能出现没有读到文件末尾就直接跳出的情况。
